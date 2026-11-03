@@ -1,0 +1,16 @@
+{% extends 'Posts/base.html' %}
+{% block title %}Auteurs{% endblock %}
+{% block content %}
+<h1>Auteurs</h1>
+<p><a href="{% url 'Posts:author-create' %}">Ajouter un auteur</a></p>
+{% for author in authors %}
+<article>
+    <h2>{{ author.name }}</h2>
+    {% if author.email %}<p>{{ author.email }}</p>{% endif %}
+    <p>{{ author.bio|default:"Aucune biographie." }}</p>
+    <p>{{ author.posts.count }} article{{ author.posts.count|pluralize }}</p>
+</article>
+{% empty %}
+<p>Aucun auteur pour le moment.</p>
+{% endfor %}
+{% endblock %}

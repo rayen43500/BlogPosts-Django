@@ -1,0 +1,18 @@
+{% extends 'Posts/base.html' %}
+{% block title %}Articles - BlogProject{% endblock %}
+{% block content %}
+<h1>Articles du blog</h1>
+{% for post in posts %}
+<article>
+    <h2>{{ post.title }}</h2>
+    <p><strong>{{ post.author }}</strong> · {{ post.created_on|date:"d/m/Y H:i" }}</p>
+    <p>{{ post.content|linebreaksbr }}</p>
+    <div class="actions">
+        <a href="{% url 'Posts:update' post.pk %}">Modifier</a>
+        <a href="{% url 'Posts:delete' post.pk %}">Supprimer</a>
+    </div>
+</article>
+{% empty %}
+<p>Aucun article pour le moment.</p>
+{% endfor %}
+{% endblock %}

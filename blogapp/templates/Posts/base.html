@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}BlogProject{% endblock %}</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+        nav { display: flex; gap: 1rem; margin-bottom: 2rem; }
+        article { border-bottom: 1px solid #ddd; padding: 1rem 0; }
+        form { display: grid; gap: 1rem; max-width: 650px; }
+        input, textarea, select { font: inherit; padding: .5rem; }
+        textarea { min-height: 180px; }
+        .actions { display: flex; gap: 1rem; align-items: center; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'Posts:listhtml' %}">Articles</a>
+        <a href="{% url 'Posts:authors' %}">Auteurs</a>
+        <a href="{% url 'Posts:create' %}">Nouvel article</a>
+    </nav>
+    {% block content %}{% endblock %}
+</body>
+</html>
