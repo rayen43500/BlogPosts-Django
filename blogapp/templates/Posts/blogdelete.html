@@ -3,9 +3,9 @@
 {% block content %}
 <h1>Supprimer l'article</h1>
 <p>Confirmer la suppression de « {{ object.title }} » ?</p>
-<form method="post">
+<form method="post" class="form-card">
     {% csrf_token %}
-    <button type="submit">Confirmer</button>
-    <a href="{% url 'Posts:listhtml' %}">Annuler</a>
+    <button class="button-danger" type="submit">Confirmer</button>
+    <a class="button" href="{% url 'Posts:listhtml' %}">Annuler</a>
 </form>
 {% endblock %}

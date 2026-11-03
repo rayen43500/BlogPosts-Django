@@ -5,21 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}BlogProject{% endblock %}</title>
     <style>
-        body { font-family: system-ui, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
-        nav { display: flex; gap: 1rem; margin-bottom: 2rem; }
-        article { border-bottom: 1px solid #ddd; padding: 1rem 0; }
-        form { display: grid; gap: 1rem; max-width: 650px; }
-        input, textarea, select { font: inherit; padding: .5rem; }
-        textarea { min-height: 180px; }
-        .actions { display: flex; gap: 1rem; align-items: center; }
+        :root { color-scheme: light; font-family: system-ui, sans-serif; }
+        * { box-sizing: border-box; }
+        body { background: #f3f6f9; color: #263238; margin: 0; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 1rem; }
+        header { background: #155e75; color: white; box-shadow: 0 2px 8px #0002; }
+        nav { display: flex; align-items: center; gap: 1.25rem; min-height: 64px; }
+        nav strong { font-size: 1.2rem; margin-right: auto; }
+        nav a { color: white; font-weight: 600; text-decoration: none; }
+        nav a:hover { color: #bae6fd; }
+        main { padding: 2rem 0 3rem; }
+        h1 { color: #164e63; margin-top: 0; }
+        article, .form-card { background: white; border: 1px solid #dbe5ea; border-radius: 10px; box-shadow: 0 3px 12px #164e6314; padding: 1.25rem; margin: 1rem 0; }
+        article h2 { color: #155e75; margin-top: 0; }
+        .meta { color: #607d8b; font-size: .9rem; }
+        form { display: grid; gap: .75rem; max-width: 650px; }
+        form p { display: grid; gap: .35rem; margin: 0; }
+        label { font-weight: 600; }
+        input, textarea, select { border: 1px solid #b0bec5; border-radius: 6px; font: inherit; padding: .65rem; width: 100%; }
+        input:focus, textarea:focus, select:focus { border-color: #0891b2; outline: 2px solid #67e8f955; }
+        textarea { min-height: 180px; resize: vertical; }
+        button, .button { background: #0891b2; border: 0; border-radius: 6px; color: white; cursor: pointer; display: inline-block; font: inherit; font-weight: 600; padding: .65rem 1rem; text-decoration: none; }
+        button:hover, .button:hover { background: #0e7490; }
+        .button-danger { background: #dc2626; }
+        .button-danger:hover { background: #b91c1c; }
+        .actions { display: flex; gap: .75rem; align-items: center; }
+        .actions a:not(.button) { color: #0e7490; font-weight: 600; }
+        @media (max-width: 600px) {
+            nav { flex-wrap: wrap; gap: .75rem; padding: .75rem 0; }
+            nav strong { flex-basis: 100%; margin-right: 0; }
+        }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="{% url 'Posts:listhtml' %}">Articles</a>
-        <a href="{% url 'Posts:authors' %}">Auteurs</a>
-        <a href="{% url 'Posts:create' %}">Nouvel article</a>
-    </nav>
-    {% block content %}{% endblock %}
+    <header>
+        <div class="container">
+            <nav>
+                <strong>BlogProject</strong>
+                <a href="{% url 'Posts:listhtml' %}">Articles</a>
+                <a href="{% url 'Posts:authors' %}">Auteurs</a>
+                <a href="{% url 'Posts:create' %}">Nouvel article</a>
+            </nav>
+        </div>
+    </header>
+    <main class="container">{% block content %}{% endblock %}</main>
 </body>
 </html>
